@@ -20,10 +20,6 @@ int main()
 		{
 			std::cout<<"invalid"<<"\n";
 		}
-		
-
 	}
-	
-	
 	return 0;
 }
