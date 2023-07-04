@@ -1,2 +1,2 @@
 # Polyalgo
-A collection of simple algorithms and programs. 
+A collection of "home made" algorithms and programs. 
