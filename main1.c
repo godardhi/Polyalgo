@@ -8,13 +8,12 @@ int tentative=1;
 int borne_sup;
 int borne_inf;
 
-int tracker1[3]={0};
-int tracker2[3]={0};
+int trackeur1[3]={0};
+int trackeur2[3]={0};
 
-void generate_sequence(int generated_number[], int borne_sup, int borne_inf, int compte);
+void generateur_sequence(int nombres_genere[], int borne_sup, int borne_inf, int compte);
 
-void master_mind(int generated_number[],int tentative, int compte);
-
+void master_mind(int nombres_genere[],int tentative, int compte);
 
 int main()
 {
@@ -24,7 +23,7 @@ int main()
     
     printf("Combien des nombres voulez vous deviner: ");
     scanf("%d", &compte);
-    int generated_numbers[compte];
+    int nombres_genere[compte];
     printf("Entrez le nombre des tentatives: ");
     scanf("%d", &tentative);
 
@@ -32,29 +31,25 @@ int main()
     scanf("%d", &borne_inf);
     printf("Entrez la borne sup: ");
     scanf("%d", &borne_sup);
-    generate_sequence(generated_numbers, borne_sup, borne_inf, compte);
-    master_mind(generated_numbers,tentative,compte);
+    generate_sequence(nombres_genere, borne_sup, borne_inf, compte);
+    master_mind(nombres_genere,tentative,compte);
     return 0;
 }
 
-void generate_sequence(int generated_sequence[], int borne_sup, int borne_inf, int compte)
+void generateur_sequence(int nombres_genere[], int borne_sup, int borne_inf, int compte)
 {
     for(int i=0; i<compte; i++)
     {
-        generated_sequence[i] = (rand() % (borne_sup - borne_inf + 1)) + borne_inf;
-    }
-    for(int i=0; i<compte; i++)
-    {
-        printf("%d;\n",generated_sequence[i]);
+        nombres_genere[i] = (rand() % (borne_sup - borne_inf + 1)) + borne_inf;
     }
 }
 
 
-void master_mind(int generated_number[],int tentative, int compte)
+void master_mind(int nombres_genere[],int tentative, int compte)
 {
     float gagner=compte;
     int iteration=0;
-    int player_sequence[compte];
+    int sequence_joueur[compte];
     do
     {
         printf("\t***Entrez %d nombres***\t(vie: %d)\n", compte,tentative-iteration);
@@ -66,7 +61,7 @@ void master_mind(int generated_number[],int tentative, int compte)
         printf("original sequence: ");
         for(int i=0; i<compte; i++)
         {
-            printf(" %d;", generated_number[i]);
+            printf(" %d;", nombres_genere[i]);
         }
 
         printf("\n");
@@ -74,19 +69,19 @@ void master_mind(int generated_number[],int tentative, int compte)
         {
             for(int j=0; j<compte; j++)
             {
-                if((generated_number[i]==player_sequence[j]) && !tracker1[i] && !tracker2[j])
+                if((nombres_genere[i]==player_sequence[j]) && !trackeur1[i] && !trackeur2[j])
                 {
                     if(i==j)
                     {
                         gagner--;
-                        printf("indice : (%d==%d): array1=%d array2=%d. bonne position et bonne valeur\n", i,j, generated_number[i], player_sequence[j]);
+                        printf("indice : (%d==%d): array1=%d array2=%d. bonne position et bonne valeur\n", i,j, nombres_genere[i], sequence_joueur[j]);
                     }else
                     {
                         gagner++;
-                        printf("indice : (%d!=%d): array1=%d array2=%d mauvaise position mais bonne valeur\n", i,j, generated_number[i], player_sequence[j]);
+                        printf("indice : (%d!=%d): array1=%d array2=%d mauvaise position mais bonne valeur\n", i,j, nombres_genere[i], sequence_joueur[j]);
                     }
-                    tracker1[i]=1;
-                    tracker2[j]=1;
+                    trackeur1[i]=1;
+                    trackeur2[j]=1;
             }   }   
         }
         iteration++;
@@ -101,7 +96,7 @@ void master_mind(int generated_number[],int tentative, int compte)
     int nul=0;
     for(int i=0; i<compte; i++)
     {
-        if((generated_number[i]!=player_sequence[i]) && (gagner!=0))
+        if((nombres_genere[i]!=sequence_joueur[i]) && (gagner!=0))
         {
             nul++;
         }
@@ -111,4 +106,3 @@ void master_mind(int generated_number[],int tentative, int compte)
         printf(" Vous avez perdu !\n");
     }
 }
-
