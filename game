@@ -1,0 +1,215 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+// Les variables globales
+int score_joueur1=0;
+int score_joueur2=0;
+char termine='\0';
+
+// Les Fonctions 
+
+void Afficher(char entree);
+char JeuAleatoire(void);
+int Partie(char joueur1, char joueur2);
+
+int main()
+{
+    printf("\t***********************************\n");
+    printf("*\tPIERRE-FEUILLE-CISEAUX-LEZARD-SPOCK\t*\n");
+    printf("\t***********************************\n");
+
+    char joueur1;
+    char joueur2;
+    int resultat=Partie(joueur1,joueur2);
+    if(resultat==1)
+    {
+        printf("---**Vous avez à gagner car ton score est superieur à celui de l'ordi**---\n");
+    }else if(resultat==2)
+    {
+        printf("---**L'ordi à gagner car ton score est inferieur à celui de l'ordi**---\n");
+    }else if(resultat==0)
+    {
+        printf("--**Partie nulle\n**--");
+    }
+    return 0;
+}
+
+char JeuAleatoire(void)
+{
+    srand(time(NULL));
+    char list[5]={'P', 'F', 'C', 'L', 'S'};
+    int indice_aleatoire = rand() / (RAND_MAX / 5 + 1);
+    return list[indice_aleatoire];
+}
+
+void Afficher(char entree)
+{
+    if(entree=='p' || entree=='P')
+    {
+        printf("Pierre");
+
+    }else if(entree=='f' || entree=='F')
+    {
+        printf("Feuille");
+
+    }else if(entree=='c' || entree=='C')
+    {
+        printf("Ciseaux");
+
+    }else if(entree=='l' || entree=='L')
+    {
+        printf("Lezard");
+
+    }else if (entree=='s' || entree=='S')
+    {
+        printf("Spock");
+    }
+    
+}
+
+int Partie(char joueur1, char joueur2)
+{
+    if(termine=='o'||termine=='O'|| termine=='\0')
+        {
+            // l'ordi fait son choix
+            joueur2=JeuAleatoire();
+            // tant que le joueur entrer une mauvaise valuer on boucle 
+            while(  (joueur1!='P' && joueur1!='p')&& 
+                    (joueur1!='F' && joueur1!='f')&& 
+                    (joueur1!='C' && joueur1!='c')&& 
+                    (joueur1!='L' && joueur1!='l')&& 
+                    (joueur1!='S' && joueur1!='s'))
+                {
+                    printf("A vous de jouer :");
+                    scanf(" %c", &joueur1);  
+                }
+
+        //  Pour simplifier les conditions if/else, On convertir en majuscule vu que l'ordi retourne juste en majuscule
+
+        if(98<(int)joueur1 && (int)joueur1<116)
+        {
+            joueur1= joueur1-32;
+        }
+
+        // on permute dans tous les possibilités possible
+
+        if((joueur1=='S' && joueur2=='P') || ( joueur1=='S' && joueur2=='C'))
+        {
+            score_joueur1++;
+            printf("Joueur1(Toi): "); 
+            Afficher(joueur1);
+            printf(" Joueur2(ordi): "); 
+            Afficher(joueur2);
+            printf("\n** Ton score: %d vs ordi: %d **\n", score_joueur1, score_joueur2);
+
+        }else if((joueur2=='S' && joueur1=='P') || ( joueur2=='S' && joueur1=='C'))
+        {
+            score_joueur2++;
+            printf("Joueur1(Toi): "); 
+            Afficher(joueur1);
+            printf(" Joueur2(ordi): "); 
+            Afficher(joueur2);
+            printf("\n** Ton score: %d vs ordi: %d **\n", score_joueur1, score_joueur2);
+        }
+
+        if((joueur1=='P' && joueur2=='C') || ( joueur1=='P' && joueur2=='L'))
+        {
+            score_joueur1++;
+            printf("Joueur1(Toi): "); 
+            Afficher(joueur1);
+            printf(" Joueur2(ordi): "); 
+            Afficher(joueur2);
+            printf("\n** Ton score: %d vs ordi: %d **\n", score_joueur1, score_joueur2);
+
+        }else if((joueur2=='P' && joueur1=='C') || ( joueur2=='P' && joueur1=='L'))
+        {
+            score_joueur2++;
+            printf("Joueur1(Toi): "); 
+            Afficher(joueur1);
+            printf(" Joueur2(ordi): "); 
+            Afficher(joueur2);
+            printf("\n** Ton score: %d vs ordi: %d **\n", score_joueur1, score_joueur2);
+        }
+
+        if((joueur1=='C' && joueur2=='F') || ( joueur1=='C' && joueur2=='L'))
+        {
+            score_joueur1++;
+            printf("Joueur1(Toi): "); 
+            Afficher(joueur1);
+            printf(" Joueur2(ordi): "); 
+            Afficher(joueur2);
+            printf("\n** Ton score: %d vs ordi: %d **\n", score_joueur1, score_joueur2);
+
+        }else if((joueur2=='C' && joueur1=='F') || ( joueur2=='C' && joueur1=='L'))
+        {
+            score_joueur2++;
+            printf("Joueur1(Toi): "); 
+            Afficher(joueur1);
+            printf(" Joueur2(ordi): "); 
+            Afficher(joueur2);
+            printf("\n** Ton score: %d vs ordi: %d **\n", score_joueur1, score_joueur2);
+        }
+
+        if((joueur1=='L' && joueur2=='S') || ( joueur1=='L' && joueur2=='F'))
+        {
+            score_joueur1++;
+            printf("Joueur1(Toi): "); 
+            Afficher(joueur1);
+            printf(" Joueur2(ordi): "); 
+            Afficher(joueur2);
+            printf("\n** Ton score: %d vs ordi: %d **\n", score_joueur1, score_joueur2);
+
+        }else if((joueur2=='L' && joueur1=='S') || ( joueur2=='L' && joueur1=='F'))
+        {
+            score_joueur2++;
+            printf("Joueur1(Toi): "); 
+            Afficher(joueur1);
+            printf(" Joueur2(ordi): "); 
+            Afficher(joueur2);
+            printf("\n** Ton score: %d vs ordi: %d **\n", score_joueur1, score_joueur2);
+        }
+
+        if((joueur1=='F' && joueur2=='P') || ( joueur1=='F' && joueur2=='S'))
+        {
+            score_joueur1++;
+            printf("Joueur1(Toi): "); 
+            Afficher(joueur1);
+            printf(" Joueur2(ordi): "); 
+            Afficher(joueur2);
+            printf("\n** Ton score: %d vs ordi: %d **\n", score_joueur1, score_joueur2);
+
+        }else if((joueur2=='F' && joueur1=='P') || ( joueur2=='F' && joueur1=='P'))
+        {
+            score_joueur2++;
+            printf("Joueur1(Toi): "); 
+            Afficher(joueur1);
+            printf(" Joueur2(ordi): "); 
+            Afficher(joueur2);
+            printf("\n** Ton score: %d vs ordi: %d **\n", score_joueur1, score_joueur2);
+        }
+
+            // On "efface" le choix du joueur1
+            joueur1='\0';
+            
+            // On demande a joueur1 s'il veut continuer la partie 
+            printf("=================>Voulez-vous continuer (O/N)? : ");
+            scanf(" %c", &termine);
+
+            
+            return Partie(joueur1,joueur2);
+        }else if((termine=='N'||termine=='n'))
+        {
+            if(score_joueur1>score_joueur2)
+            {
+                return 1;
+            }else if(score_joueur1<score_joueur2)
+            {
+                return 2;
+            }else if(score_joueur1==score_joueur2)
+            {
+                return 0;
+            }
+        }
+    return 0;
+}
