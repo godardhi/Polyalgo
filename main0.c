@@ -6,7 +6,7 @@
 
 int masterMind(char jouer1[][20], char jouer2[][20], int Nmb_couleurs);
 void code_couleur(char jouer2[][20], int Nmb_couleurs);
-void afficher(int bool);
+//void afficher(int bool);
 
 
 int main()
@@ -34,7 +34,7 @@ int main()
 
 	if(oui_non=='o')
 	{
-		// declaration des variables
+		// déclaration des variables
 
 		int Nmb_couleurs;
 
@@ -70,12 +70,11 @@ int main()
 	return 0;
 }
 
-
 void code_couleur(char jouer2[][20], int Nmb_couleurs)
 {
-	
+	// pour avoir des nombres quasi aleatoire
 	srand(time(NULL));
-	// L'intervalle des nombres generent est 0 à 11 les bornes inclues
+	// L'intervalle des nombres génère est 0 à 11 les bornes incluses
 	
 	for(int i=0; i<Nmb_couleurs; i++)
 	{
@@ -124,8 +123,6 @@ void code_couleur(char jouer2[][20], int Nmb_couleurs)
 		// la suite des couleurs choisi par l'ordi
 		printf("%s,", jouer2[i]);
 	}
-
-
 }
 
 int masterMind(char jouer1[][20], char jouer2[][20], int Nmb_couleurs)
@@ -155,7 +152,7 @@ int masterMind(char jouer1[][20], char jouer2[][20], int Nmb_couleurs)
 			strcmp(jouer1[i],"marron")!=0 && strcmp(jouer1[i],"gris")!=0 && strcmp(jouer1[i],"noir")!=0 && strcmp(jouer1[i],"blanc")!=0);
 		} 
 
-		int repetiteur[20] = {0}; // pour éviter les surcomptage des couleur 
+		int repetiteur[20] = {0}; // pour éviter les surcomptages des couleurs 
 
         for (int i = 0; i < Nmb_couleurs; i++)
         {
@@ -179,8 +176,6 @@ int masterMind(char jouer1[][20], char jouer2[][20], int Nmb_couleurs)
                 }
             }
         }	
-		// 
-
 		if(bonne_position==Nmb_couleurs)
 		{
 			return 1;
@@ -189,6 +184,3 @@ int masterMind(char jouer1[][20], char jouer2[][20], int Nmb_couleurs)
 	}
 	return 0;
 }	
-
-
-
