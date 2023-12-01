@@ -131,7 +131,6 @@ void code_couleur(char jouer2[][20], int Nmb_couleurs)
 int masterMind(char jouer1[][20], char jouer2[][20], int Nmb_couleurs)
 {
 	
-
 	int essais=3;
 	int iteration=0;
 	int bonne_position=0;
@@ -156,15 +155,13 @@ int masterMind(char jouer1[][20], char jouer2[][20], int Nmb_couleurs)
 			strcmp(jouer1[i],"marron")!=0 && strcmp(jouer1[i],"gris")!=0 && strcmp(jouer1[i],"noir")!=0 && strcmp(jouer1[i],"blanc")!=0);
 		} 
 
-		//
-
-		int matchedIndices[20] = {0}; // Array to keep track of matched indices
+		int repetiteur[20] = {0}; // pour éviter les surcomptage des couleur 
 
         for (int i = 0; i < Nmb_couleurs; i++)
         {
             for (int j = 0; j < Nmb_couleurs; j++)
             {
-                if (strcmp(jouer1[i], jouer2[j]) == 0 && !matchedIndices[j])
+                if (strcmp(jouer1[i], jouer2[j]) == 0 && !repetiteur[j])
                 {
                     if (i == j)
                     {
@@ -177,8 +174,8 @@ int masterMind(char jouer1[][20], char jouer2[][20], int Nmb_couleurs)
                         printf("###%s n'est correctement placé\n###", jouer1[i]);
                     }
 
-                    matchedIndices[j] = 1; // Mark this index as matched
-                    break;               // Break to avoid multiple matches for the same color
+                    repetiteur[j]= 1; 
+                    break;               
                 }
             }
         }	
