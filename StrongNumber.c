@@ -6,6 +6,7 @@ void decomposeInteger(int b);
 bool findStrongNumber(int n);
 int factorial(int a);
 
+// Run with 40585 or another integer but make sure to change the size  of arr to the lenght of that integer 
 
 // To be treated later : 
 int arr[5];
